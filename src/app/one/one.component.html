@@ -1,0 +1,135 @@
+<div class="title flex">
+  <h1 class="text-center mb-5">- Форма-анкета Фронт-Энд разработчика -</h1>
+</div>
+
+<div class="container mt-4">
+
+  <form id="peronalForm" [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="mb-3">
+      <label for="name" class="form-label">1. First name</label>
+      <input type="text" placeholder="Your name" class="form-control" id="name" formControlName="userName">
+      <div
+        *ngIf="form.get('userName').invalid && form.get('userName').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('userName').errors.required">
+          This field cannot be empty
+        </small>
+
+        <small *ngIf="form.get('userName').errors.minLength">
+          Too short
+        </small>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">2. Last name</label>
+      <input type="text" placeholder="Your last name" class="form-control" id="lastName" formControlName="userLastName">
+      <div
+        *ngIf="form.get('userLastName').invalid && form.get('userLastName').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('userLastName').errors.required">
+          This field cannot be empty
+        </small>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+
+      <label for="bDay" class="form-label"> 3. Birthday &nbsp;</label>
+      <br>
+      <mat-form-field>
+        <input id="bDay" matInput [matDatepicker]="dp" placeholder="Verbose datepicker" formControlName="birthday">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="selectFrame" class="form-label">4. Framework skill &nbsp;</label>
+      <ng-select [items]="frameworks"
+                 id="selectFrame"
+                 bindLabel="name"
+                 required
+                 bindValue="id"
+                 [(ngModel)]="selectedFrameworks"
+                 [ngModelOptions]="{standalone : true}"
+                 (change)="onSetFramework($event)"
+                 name="framework">
+      </ng-select>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="selectedFrame" class="form-label">5. Framework version &nbsp;</label>
+      <ng-select [items]="versions"
+                 id="selectedFrame"
+                 bindLabel="name"
+                 required
+                 bindValue="id"
+                 [(ngModel)]="version"
+                 [ngModelOptions]="{standalone : true}"
+                 name="version"
+      >
+      </ng-select>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="userEmail" class="form-label">6. Email</label>
+      <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" formControlName="email">
+      <div
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('email').errors.required">
+          This field cannot be empty
+        </small>
+
+        <small *ngIf="form.get('email').errors.email">
+          Enter a valid email
+        </small>
+
+        <small *ngIf="form.get('email').errors.restrictedEmail">
+          Email is already in use
+        </small>
+
+        <small *ngIf="form.get('email').errors.uniqEmail">
+          Email is already busy
+        </small>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="mb-3">
+      <label for="userHob" class="form-label">7. Hobbies </label>
+      <ng-select [items]="companies"
+                 [addTag]="addTagFn"
+                 [hideSelected]="true"
+                 required
+                 id="userHob"
+                 multiple="true"
+                 bindLabel="name"
+                 [(ngModel)]="selectedCompanies"
+                 [ngModelOptions]="{standalone : true}">
+
+      </ng-select>
+    </div>
+
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-dark mb-5">Submit</button>
+
+  </form>
+</div>

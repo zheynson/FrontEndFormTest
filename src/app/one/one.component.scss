@@ -1,0 +1,31 @@
+#peronalForm{
+  max-width: 400px;
+}
+
+.title{
+  background-color: #000000;
+  color: aliceblue;
+}
+
+button.color {
+  background-color: #F5F5DC !important;
+}
+
+.alert{
+  color: red;
+  border: red solid 1px;
+}
+
+input{
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  &.ng-valid.ng-touched{
+    border: 1px solid green;
+  }
+}
+
+.validation{
+  color: red;
+}
