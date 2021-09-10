@@ -10,6 +10,7 @@ export class MyValidators {
     return null
   }
 
+
   static uniqEmail(control: FormControl): Promise<any> | Observable<any>{
     return new Promise(resolve => {
       setTimeout(()=>{
@@ -21,6 +22,4 @@ export class MyValidators {
       },2000)
     })
   }
-
-
 }

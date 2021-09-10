@@ -16,15 +16,6 @@ form: FormGroup
 
 
 
-
-
-
-
-
-
-
-
-
   selectedFrameworks = 3;
   frameworks = [
     {id: 1, name: 'Angular.js'},
@@ -53,32 +44,23 @@ form: FormGroup
     this.form = new FormGroup({
       userName: new FormControl('',[
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(2)
       ]),
       userLastName: new FormControl('',[
         Validators.required,
         Validators.minLength(3)
       ]),
       birthday: new FormControl('',Validators.required),
+      framework: new FormControl(null,Validators.required),
+      frameworkVersion: new FormControl(null,Validators.required),
       email: new FormControl('',[
         Validators.email,
         Validators.required,
         MyValidators.restrictedEmails
-      ], MyValidators.uniqEmail)
+      ], MyValidators.uniqEmail),
+      hobbies: new FormControl('',
+        Validators.required)
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     this.companiesNames.forEach((c, i) => {
@@ -93,11 +75,6 @@ form: FormGroup
   }
 
 
-
-
-
-
-
   onSetFramework(event) {
     if (event.id === 1) {
       this.versions = this.frameworkVersion.angular
@@ -107,12 +84,11 @@ form: FormGroup
       this.versions = this.frameworkVersion.vue
     }
     this.version = null;
-
   }
+
 
   addTagFn(name) {
     return {name: name, tag: true};
   }
-
 
 };

@@ -16,7 +16,7 @@ button.color {
   border: red solid 1px;
 }
 
-input{
+input, ng-select{
   &.ng-invalid.ng-touched {
     border: 1px solid red;
   }

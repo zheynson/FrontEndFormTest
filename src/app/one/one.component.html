@@ -8,7 +8,7 @@
 
     <div class="mb-3">
       <label for="name" class="form-label">1. First name</label>
-      <input type="text" placeholder="Your name" class="form-control" id="name" formControlName="userName">
+      <input type="text" class="form-control" id="name" formControlName="userName">
       <div
         *ngIf="form.get('userName').invalid && form.get('userName').touched"
         class="validation"
@@ -17,9 +17,6 @@
           This field cannot be empty
         </small>
 
-        <small *ngIf="form.get('userName').errors.minLength">
-          Too short
-        </small>
       </div>
 
     </div>
@@ -28,7 +25,7 @@
 
     <div class="mb-3">
       <label for="lastName" class="form-label">2. Last name</label>
-      <input type="text" placeholder="Your last name" class="form-control" id="lastName" formControlName="userLastName">
+      <input type="text" class="form-control" id="lastName" formControlName="userLastName">
       <div
         *ngIf="form.get('userLastName').invalid && form.get('userLastName').touched"
         class="validation"
@@ -61,11 +58,18 @@
                  bindLabel="name"
                  required
                  bindValue="id"
-                 [(ngModel)]="selectedFrameworks"
-                 [ngModelOptions]="{standalone : true}"
-                 (change)="onSetFramework($event)"
-                 name="framework">
+                 formControlName="framework"
+                 (change)="onSetFramework($event)">
       </ng-select>
+      <div
+        *ngIf="form.get('framework').invalid && form.get('framework').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('framework').errors.required">
+          This field cannot be empty
+        </small>
+      </div>
+
     </div>
 
     <hr>
@@ -75,13 +79,18 @@
       <ng-select [items]="versions"
                  id="selectedFrame"
                  bindLabel="name"
-                 required
                  bindValue="id"
-                 [(ngModel)]="version"
-                 [ngModelOptions]="{standalone : true}"
-                 name="version"
+                 formControlName="frameworkVersion"
       >
       </ng-select>
+      <div
+        *ngIf="form.get('frameworkVersion').invalid && form.get('frameworkVersion').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('frameworkVersion').errors.required">
+          This field cannot be empty
+        </small>
+      </div>
     </div>
 
     <hr>
@@ -122,10 +131,18 @@
                  id="userHob"
                  multiple="true"
                  bindLabel="name"
-                 [(ngModel)]="selectedCompanies"
-                 [ngModelOptions]="{standalone : true}">
-
+                 formControlName="hobbies">
       </ng-select>
+      <div
+        *ngIf="form.get('hobbies').invalid && form.get('hobbies').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('hobbies').errors.required">
+          Enter at least one hobby
+        </small>
+
+      </div>
+
     </div>
 
 
