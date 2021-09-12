@@ -18,9 +18,9 @@ form: FormGroup
 
   selectedFrameworks = 3;
   frameworks = [
-    {id: 1, name: 'Angular.js'},
-    {id: 2, name: 'React.js'},
-    {id: 3, name: 'Vue.js'},
+    {id: 1, name: 'Angular'},
+    {id: 2, name: 'React'},
+    {id: 3, name: 'Vue'},
   ];
 
   frameworkVersion = {
@@ -69,9 +69,15 @@ form: FormGroup
   }
 
   submit() {
-    console.log('Form submited: ', this.form)
-    const formData = {...this.form.value}
-    this.form.reset()
+    console.log('firstName: ' + "'" + this.form.value.userName + "'");
+    console.log('lastName: ' + "'" + this.form.value.userLastName + "'");
+    console.log('dateOfBirth: ' + "'" + this.form.value.birthday + "'");
+    console.log('framework: ' + "'" + this.form.value.framework + "'");
+    console.log('frameworkVersion: ' + "'" + this.form.value.frameworkVersion + "'");
+    console.log('email: ' + "'" + this.form.value.email + "'");
+    console.log('hobby: ' + "'" + this.form.value.hobbies[0].name + "'");
+
+    this.form.reset();
   }
 
 

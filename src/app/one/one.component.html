@@ -27,8 +27,7 @@
       <label for="lastName" class="form-label">2. Last name</label>
       <input type="text" class="form-control" id="lastName" formControlName="userLastName">
       <div
-        *ngIf="form.get('userLastName').invalid && form.get('userLastName').touched"
-        class="validation"
+        *ngIf="form.get('userLastName').invalid && form.get('userLastName').touched" class="validation"
       >
         <small *ngIf="form.get('userLastName').errors.required">
           This field cannot be empty
@@ -57,7 +56,7 @@
                  id="selectFrame"
                  bindLabel="name"
                  required
-                 bindValue="id"
+                 bindValue="name"
                  formControlName="framework"
                  (change)="onSetFramework($event)">
       </ng-select>
